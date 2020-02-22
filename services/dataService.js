@@ -87,7 +87,7 @@ router.get('/getratesline1',(req,res) => {
 })
 
 router.get('/getratesline2',(req,res) => {
-    datasLine1.find({},'-_id',(error,data) => {
+    datasLine2.find({},'-_id',(error,data) => {
          if(!error){
              return res.send(data);
          }if(error){
@@ -97,7 +97,7 @@ router.get('/getratesline2',(req,res) => {
  })
 
  router.get('/getratesline3',(req,res) => {
-    datasLine1.find({},'-_id',(error,data) => {
+    datasLine3.find({},'-_id',(error,data) => {
          if(!error){
              return res.send(data);
          }if(error){
