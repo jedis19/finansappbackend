@@ -1,6 +1,9 @@
 var express = require('express');
 var datasLine1 = require('../models/datasline1')
 
+
+var router = express.Router()
+
 router.post('/sendrates',async (req,res) => {
     var userData = new datasLine1(req.body);
     var findData =await datasLine1.findOne({name:userData.name})
