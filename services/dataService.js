@@ -76,7 +76,7 @@ router.post('/sendratesline3',async (req,res) => {
 })
 
 
-router.get('/getrates',(req,res) => {
+router.get('/getratesline1',(req,res) => {
    datasLine1.find({},'-_id',(error,data) => {
         if(!error){
             return res.send(data);
@@ -85,6 +85,26 @@ router.get('/getrates',(req,res) => {
         }
     }).select('name rate')
 })
+
+router.get('/getratesline2',(req,res) => {
+    datasLine1.find({},'-_id',(error,data) => {
+         if(!error){
+             return res.send(data);
+         }if(error){
+             return res.send(error);
+         }
+     }).select('name rate')
+ })
+
+ router.get('/getratesline3',(req,res) => {
+    datasLine1.find({},'-_id',(error,data) => {
+         if(!error){
+             return res.send(data);
+         }if(error){
+             return res.send(error);
+         }
+     }).select('name rate')
+ })
 
 var dataService = {router}
 module.exports = dataService
