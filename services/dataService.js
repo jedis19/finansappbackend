@@ -1,10 +1,12 @@
 var express = require('express');
 var datasLine1 = require('../models/datasline1')
+var datasLine2= require('../models/datasline2');
+var datasLine3 = require('../models/datasline3')
 
 
 var router = express.Router()
 
-router.post('/sendrates',async (req,res) => {
+router.post('/sendratesline1',async (req,res) => {
     var userData = new datasLine1(req.body);
     var findData =await datasLine1.findOne({name:userData.name})
     if(findData){
@@ -25,7 +27,52 @@ router.post('/sendrates',async (req,res) => {
         })
         
     }
- 
+})
+
+router.post('/sendratesline2',async (req,res) => {
+    var userData = new datasLine2(req.body);
+    var findData =await datasLine2.findOne({name:userData.name})
+    if(findData){
+        findData.update({rate:userData.rate},(error,dat) => {
+            if(error){
+                throw error;
+            }
+            return res.status(200).send({message:"Veri değiştirildi"})
+        })
+    }if(!findData){
+        userData.save((error) => {
+            if(!error){
+                return res.status(200).send({message:'Veri kaydedildi'})
+            }
+            if(error){
+                return res.status(400).send({message:error});
+            }
+        })
+        
+    }
+})
+
+router.post('/sendratesline3',async (req,res) => {
+    var userData = new datasLine3(req.body);
+    var findData =await datasLine3.findOne({name:userData.name})
+    if(findData){
+        findData.update({rate:userData.rate},(error,dat) => {
+            if(error){
+                throw error;
+            }
+            return res.status(200).send({message:"Veri değiştirildi"})
+        })
+    }if(!findData){
+        userData.save((error) => {
+            if(!error){
+                return res.status(200).send({message:'Veri kaydedildi'})
+            }
+            if(error){
+                return res.status(400).send({message:error});
+            }
+        })
+        
+    }
 })
 
 
