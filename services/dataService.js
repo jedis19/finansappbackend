@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 var datasLine1 = require('../models/datasline1')
 var datasLine2= require('../models/datasline2');
 var datasLine3 = require('../models/datasline3')
