@@ -4,12 +4,7 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var request = require('request');
 
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var xhr = new XMLHttpRequest();
-xhr.open("GET", chrome.extension.getURL('https://www.haremaltin.com/json/all_prices.json'), true);
-xhr.send();
 
-var whiteList = ["https://finansappdemo.firebaseapp.com/"]
 
 var datas;
 var authService = require('./services/authService')
@@ -17,16 +12,7 @@ var dataService = require('./services/dataService')
 
 var app = express()
 
-var corsOptions = {
-    origin:(origin,callback) => {
-        if(whiteList.indexOf(origin) !==-1)
-        callback(null,true);
-        else
-        callback(new Error(" ! ! !"))
-    }
-}
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
 
 
