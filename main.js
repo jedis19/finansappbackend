@@ -14,10 +14,13 @@ var app = express()
 app.use(cors());
 app.use(bodyParser.json());
 
-
-app.use((req,res) => {
-    res.setHeader('Access-Control-Allow-Origin','https://finansappdemo.firebaseapp.com');
-})
+app.use((req,res,next)=>{
+    res.header("Access-Control-Allow-Origin", 'https://finansappdemo.firebaseapp.com');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Authorization,Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+    next();
+    })
 
 function getData(){
     request.get('https://www.haremaltin.com/json/all_prices.json',(error,res,body) => {
