@@ -1,5 +1,4 @@
 var express = require('express');
-var cors = require('cors');
 var datasLine1 = require('../models/datasline1')
 var datasLine2= require('../models/datasline2');
 var datasLine3 = require('../models/datasline3')
@@ -7,7 +6,6 @@ var datasLine3 = require('../models/datasline3')
 
 var router = express.Router()
 
-router.use(cors())
 
 router.post('/sendratesline1',async (req,res) => {
     var userData = new datasLine1(req.body);

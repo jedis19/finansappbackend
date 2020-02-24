@@ -1,9 +1,7 @@
 var express = require('express');
-var cors = require('cors');
 var router = express.Router()
 var User = require('../models/user')
 
-router.use(cors())
 
 router.post('/register', (req,res) => {
     var user = new User(req.body);
