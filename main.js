@@ -4,22 +4,26 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var request = require('request');
 
+var whiteList = ["https://finansappdemo.firebaseapp.com/","https://www.haremaltin.com/json/all_prices.json"]
+
 var datas;
 var authService = require('./services/authService')
 var dataService = require('./services/dataService')
 
 var app = express()
 
+var corsOptions = {
+    origin:(origin,callback) => {
+        if(whiteList.indexOf(origin) !==-1)
+        callback(null,true);
+        else
+        callback(new Error(" ! ! !"))
+    }
+}
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-app.use((req,res,next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://www.haremaltin.com/json/all_prices.json");
-    res.setHeader("Access-Control-Allow-Origin", "https://finansappdemo.firebaseapp.com/");
-   
-    next();
-})
 
 function getData(){
     request.get('https://www.haremaltin.com/json/all_prices.json',(error,res,body) => {
