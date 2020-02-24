@@ -4,7 +4,6 @@ var User = require('../models/user')
 
 
 router.post('/register', (req,res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://finansappdemo.firebaseapp.com");
     var user = new User(req.body);
     user.isLoggedIn=false;
     user.save((error) => {
@@ -18,7 +17,6 @@ router.post('/register', (req,res) => {
 })
 
 router.post('/login',async (req,res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://finansappdemo.firebaseapp.com");
     var userData = req.body
  
     var user = await User.findOne({email:userData.email})
@@ -46,7 +44,6 @@ router.post('/login',async (req,res) => {
 })
 
 router.post('/logout',async (req,res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://finansappdemo.firebaseapp.com");
     await User.findOneAndUpdate({email:"admin@hotmail.com"},{isLoggedIn:false},(error,data) => {
         if(error){
             throw error;

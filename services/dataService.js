@@ -8,7 +8,6 @@ var router = express.Router()
 
 
 router.post('/sendratesline1',async (req,res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://finansappdemo.firebaseapp.com");
     var userData = new datasLine1(req.body);
     var findData =await datasLine1.findOne({name:userData.name})
     if(findData){
@@ -32,7 +31,6 @@ router.post('/sendratesline1',async (req,res) => {
 })
 
 router.post('/sendratesline2',async (req,res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://finansappdemo.firebaseapp.com");
     var userData = new datasLine2(req.body);
     var findData =await datasLine2.findOne({name:userData.name})
     if(findData){
@@ -56,7 +54,6 @@ router.post('/sendratesline2',async (req,res) => {
 })
 
 router.post('/sendratesline3',async (req,res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://finansappdemo.firebaseapp.com");
     var userData = new datasLine3(req.body);
     var findData =await datasLine3.findOne({name:userData.name})
     if(findData){

@@ -14,6 +14,12 @@ var app = express()
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use((req,res,next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://www.haremaltin.com/json/all_prices.json");
+    res.setHeader("Access-Control-Allow-Origin", "https://finansappdemo.firebaseapp.com/");
+   
+    next();
+})
 
 function getData(){
     request.get('https://www.haremaltin.com/json/all_prices.json',(error,res,body) => {
