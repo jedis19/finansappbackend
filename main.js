@@ -15,13 +15,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-app.use((req,res,next) => {
-    res.setHeader('Access-Control-Allow-Origin','https://finansappdemo.firebaseapp.com');
-    res.setHeader('Access-Control-Allow-Methos','GET,POST,OPTİONS,PUT,PATCH,DELETE');
-    res.setHeader('Access-Control-Allow-Headers','X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials',true);
-    next();
-})
 
 function getData(){
     request.get('https://www.haremaltin.com/json/all_prices.json',(error,res,body) => {
