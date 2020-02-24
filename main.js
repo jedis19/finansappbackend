@@ -3,8 +3,12 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var request = require('request');
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = handleStateChange; // Implemented elsewhere.
+xhr.open("GET", chrome.extension.getURL('https://www.haremaltin.com/json/all_prices.json'), true);
+xhr.send();
 
-var whiteList = ["https://finansappdemo.firebaseapp.com/","https://www.haremaltin.com/json/all_prices.json"]
+var whiteList = ["https://finansappdemo.firebaseapp.com/"]
 
 var datas;
 var authService = require('./services/authService')
