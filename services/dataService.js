@@ -6,6 +6,11 @@ var datasLine3 = require('../models/datasline3')
 
 var router = express.Router()
 
+router.use(cors())
+
+router.use((req,res) => {
+    res.setHeader('Access-Control-Allow-Origin','https://finansappdemo.firebaseapp.com');
+})
 
 router.post('/sendratesline1',async (req,res) => {
     var userData = new datasLine1(req.body);

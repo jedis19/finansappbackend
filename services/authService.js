@@ -1,7 +1,14 @@
 var express = require('express');
+var cors = require('cors');
 var router = express.Router()
 var User = require('../models/user')
 
+router.use(cors())
+
+
+router.use((req,res) => {
+    res.setHeader('Access-Control-Allow-Origin','https://finansappdemo.firebaseapp.com');
+})
 
 router.post('/register', (req,res) => {
     var user = new User(req.body);
