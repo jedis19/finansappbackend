@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var request = require('request');
+
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = handleStateChange; // Implemented elsewhere.
 xhr.open("GET", chrome.extension.getURL('https://www.haremaltin.com/json/all_prices.json'), true);
