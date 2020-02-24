@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 
 app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin','https://finansappdemo.firebaseapp.com');
+    next()
 })
 
 function getData(){
