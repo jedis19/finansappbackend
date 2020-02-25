@@ -25,7 +25,6 @@ function getData(){
     request.get(options,(error,res,body) => {
        var mydata =JSON.parse(body)
        datas = mydata['data'];
-       console.log(datas)
     })
 }
 
