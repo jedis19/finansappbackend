@@ -23,7 +23,8 @@ app.use(bodyParser.json());
 
 function getData(){
     request.get(options,(error,res,body) => {
-        datas = JSON.parse(body);
+       var mydata =JSON.parse(body)
+       datas = mydata['data'];
     })
 }
 
