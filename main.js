@@ -4,11 +4,16 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var request = require('request');
 
-
-
 var datas;
 var authService = require('./services/authService')
 var dataService = require('./services/dataService')
+
+var options = {
+    url: 'https://www.haremaltin.com/ajax/all_prices',
+    headers: {
+       "x-requested-with": "XMLHttpRequest"
+    },
+}
 
 var app = express()
 
@@ -17,7 +22,7 @@ app.use(bodyParser.json());
 
 
 function getData(){
-    request.get('https://www.haremaltin.com/json/all_prices.json',(error,res,body) => {
+    request.get(options,(error,res,body) => {
         datas = JSON.parse(body);
     })
 }
