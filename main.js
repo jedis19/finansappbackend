@@ -11,7 +11,7 @@ var dataService = require('./services/dataService')
 var options = {
     url: 'https://www.haremaltin.com/ajax/all_prices',
     headers: {
-       "x-requested-with": "XMLHttpRequest"
+        "x-requested-with": "XMLHttpRequest"
     },
 }
 
@@ -21,29 +21,36 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-function getData(){
-    request.get(options,(error,res,body) => {
-       var mydata =JSON.parse(body)
-       datas = mydata['data'];
+function getData() {
+    request.get(options, (error, res, body) => {
+        try {
+            var mydata = JSON.parse(body)
+            datas = mydata['data'];
+           
+        }catch (ex){
+            console.log(ex);
+        }
+       
     })
 }
 
-setInterval(getData,8000)
+getData()
+setInterval(getData, 9000)
 
-mongoose.connect("mongodb://hakan:123456a@ds119072.mlab.com:19072/heroku_52pxwwsv",(error) => {
-    if(!error){
+mongoose.connect("mongodb://hakan:123456a@ds119072.mlab.com:19072/heroku_52pxwwsv", (error) => {
+    if (!error) {
         console.log('mongoya bağlandık')
-    }if(error){
+    } if (error) {
         console.log(error)
     }
 })
 
-app.use('/auth',authService.router);
+app.use('/auth', authService.router);
 
-app.use('/rate',dataService.router)
+app.use('/rate', dataService.router)
 
-app.get('/get',(req,res) => {
-   res.send(datas)
+app.get('/get', (req, res) => {
+    res.send(datas)
 })
 
 app.listen(process.env.PORT);
