@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var request = require('request');
+var socketIO = require('socket.io');
 
 var datas;
 var authService = require('./services/authService')
@@ -52,5 +53,15 @@ app.use('/rate', dataService.router)
 app.get('/get', (req, res) => {
     res.send(datas)
 })
+ 
+var server = app.listen(process.env.PORT);
 
-app.listen(process.env.PORT);
+var io = socketIO(server)
+
+function sendIOdata(socket,datas){
+    socket.emit('new datas',{data:datas})
+}
+
+io.on('connection',(socket) => {
+    setInterval(() => {sendIOdata(socket,datas)},7000)
+})
