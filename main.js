@@ -63,5 +63,5 @@ function sendIOdata(socket,datas){
 }
 
 io.on('connection',(socket) => {
-    setInterval(() => {sendIOdata(socket,datas)},7000)
+    setInterval(() => {sendIOdata(socket,datas)},10000)
 })
